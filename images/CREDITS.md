@@ -8,7 +8,9 @@ add proper credit lines before launch.
 | File | Source (Wikimedia Commons) | License |
 |---|---|---|
 | hero-temple-colonnade.jpg | Perspective Pillars of Corridor - Chennakesava Temple, Somanathapura.jpg (cropped) | CC BY-SA 4.0 |
-| journey-shyamarpan.jpg | India - Varanasi - 017 - Foggy sunrise on the Ganga.jpg | CC BY 2.0 |
+| shyamarpan-dunes-sunset.jpg | A sunset on the dunes of the Great Indian Thar Desert Rajasthan India.jpg | CC BY 2.0 |
+| shyamarpan-khatu-darshan.jpg | Shree Shree Khatu Shyam Temple.jpg | CC BY 4.0 |
+| shyamarpan-salasar-balaji.jpg | Salasar, rajisthan.jpg | CC BY-SA 4.0 |
 | journey-temple-architecture.jpg | Hampi - Vittala Temple - Mahamandapa Columns.jpg | CC BY-SA 4.0 |
 | journey-ganges-ghats.jpg | Varanasi, India (47307281102).jpg | CC BY 2.0 |
 | journey-rishikesh.jpg | Peaceful and spiritual destination on the banks of the sacred River Ganga.jpg | CC BY-SA 4.0 |

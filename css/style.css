@@ -605,46 +605,6 @@ body.theme-dark .site-header:not(.is-scrolled) .nav-toggle span{ background: var
   margin-bottom: 36px;
 }
 
-/* Journey / package cards */
-.card-grid{
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-}
-.journey-card{
-  background: var(--white);
-  border: 1px solid var(--ink-12);
-  display:flex;
-  flex-direction:column;
-}
-.journey-card .thumb{ aspect-ratio: 4/3; }
-.journey-card .thumb .media-panel{ height:100%; }
-.journey-card .body{ padding: 28px 26px 32px; display:flex; flex-direction:column; gap:12px; flex:1; }
-.journey-card .meta{
-  display:flex;
-  justify-content:space-between;
-  font-size: 11px;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-  color: var(--rust);
-}
-.journey-card h3{
-  font-family: var(--font-display);
-  font-weight:400;
-  font-size: 22px;
-  line-height:1.25;
-}
-.journey-card p{ color: var(--ink-70); font-size:14px; line-height:1.65; flex:1; }
-.journey-card .foot{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding-top: 14px;
-  border-top: 1px solid var(--ink-12);
-  font-size: 13px;
-}
-.journey-card .price{ font-family: var(--font-display); font-size:17px; }
-
 /* Philosophy tenets */
 .tenets{
   display:grid;
@@ -741,6 +701,27 @@ body.theme-dark .site-header:not(.is-scrolled) .nav-toggle span{ background: var
 .cta-band h2{ font-family: var(--font-display); font-weight:400; font-size: clamp(30px,4.4vw,54px); max-width: 18ch; }
 .cta-band .eyebrow{ color: var(--gold); }
 
+/* Itinerary (day-by-day) */
+.itinerary{ border-top: 1px solid var(--ink-12); margin: 8px 0 40px; }
+.itinerary-day{ padding: 26px 0; border-bottom: 1px solid var(--ink-12); }
+.itinerary-day h4{
+  font-family: var(--font-display); font-weight:400; font-size: 19px; margin-bottom: 14px;
+  display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;
+}
+.itinerary-day h4 em{ color: var(--gold); font-style:italic; font-size:14px; letter-spacing:.04em; }
+.itinerary-day ul{ display:flex; flex-direction:column; gap:9px; }
+.itinerary-day li{ color: var(--ink-70); font-size:14.5px; line-height:1.6; padding-left:18px; position:relative; }
+.itinerary-day li::before{ content:''; position:absolute; left:0; top:0.65em; width:5px; height:5px; background:var(--rust); border-radius:50%; }
+
+/* Inclusions / not included */
+.inclusions-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 44px; margin: 40px 0; }
+.inclusions-grid h4{ font-family: var(--font-display); font-weight:400; font-size:16px; margin-bottom:16px; letter-spacing:.02em; }
+.inclusions-grid ul{ display:flex; flex-direction:column; gap:11px; }
+.inclusions-grid li{ font-size:14px; color:var(--ink-70); line-height:1.5; padding-left:18px; position:relative; }
+.inclusions-grid li::before{ content:''; position:absolute; left:0; top:0.55em; width:5px; height:5px; background:var(--gold); border-radius:50%; }
+.inclusions-grid .not-included li::before{ background: var(--ink-30); }
+@media (max-width:760px){ .inclusions-grid{ grid-template-columns:1fr; } }
+
 /* Enquiry form */
 .enquiry-form{ max-width: 760px; display:flex; flex-direction:column; gap:22px; }
 .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
@@ -779,7 +760,6 @@ body.theme-dark .site-header:not(.is-scrolled) .nav-toggle span{ background: var
   .band{ grid-template-columns: 1fr; }
   .mark-cell{ display:none; }
   .footer-top{ grid-template-columns: 1fr 1fr; }
-  .card-grid{ grid-template-columns: repeat(2,1fr); }
   .tenets{ grid-template-columns: 1fr; }
   .exp-grid{ grid-template-columns: repeat(2,1fr); }
   .exp-card.span-4, .exp-card.span-2, .exp-card.span-3{ grid-column: span 1; aspect-ratio: 4/3; }
@@ -795,7 +775,7 @@ body.theme-dark .site-header:not(.is-scrolled) .nav-toggle span{ background: var
   .split-row{ grid-template-columns: 1fr; min-height: 0; }
   .split-row > *{ height: auto; }
   .split-img{ aspect-ratio: 16/9; }
-  .journal-grid, .journal-list-grid, .card-grid{ grid-template-columns: 1fr; }
+  .journal-grid, .journal-list-grid{ grid-template-columns: 1fr; }
   .section-intro{ grid-template-columns: 1fr; }
   .footer-top{ grid-template-columns: 1fr; padding: 60px var(--gutter) 40px; }
   .footer-bottom{ flex-direction:column; align-items:flex-start; }
