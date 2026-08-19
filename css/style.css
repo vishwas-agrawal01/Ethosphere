@@ -768,13 +768,45 @@ button{ font-family: inherit; cursor:pointer; }
 .itinerary-day li::before{ content:''; position:absolute; left:0; top:0.65em; width:5px; height:5px; background:var(--rust); border-radius:50%; }
 
 /* Inclusions / not included */
-.inclusions-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 44px; margin: 40px 0; }
-.inclusions-grid h4{ font-family: var(--font-display); font-weight:400; font-size:16px; margin-bottom:16px; letter-spacing:.02em; }
-.inclusions-grid ul{ display:flex; flex-direction:column; gap:11px; }
-.inclusions-grid li{ font-size:14px; color:var(--ink-70); line-height:1.5; padding-left:18px; position:relative; }
-.inclusions-grid li::before{ content:''; position:absolute; left:0; top:0.55em; width:5px; height:5px; background:var(--gold); border-radius:50%; }
-.inclusions-grid .not-included li::before{ background: var(--ink-30); }
-@media (max-width:760px){ .inclusions-grid{ grid-template-columns:1fr; } }
+.not-included-block{ margin: 36px 0; }
+.not-included-block h4{ font-family: var(--font-display); font-weight:400; font-size:16px; margin-bottom:16px; letter-spacing:.02em; }
+.not-included-block ul{ display:flex; flex-direction:column; gap:11px; }
+.not-included-block li{ font-size:14px; color:var(--ink-70); line-height:1.5; padding-left:18px; position:relative; }
+.not-included-block li::before{ content:''; position:absolute; left:0; top:0.55em; width:5px; height:5px; background:var(--ink-30); border-radius:50%; }
+
+/* What's Included — premium editorial grid */
+.included-intro{ display:block; margin: 40px 0 18px; }
+.included-grid{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--ink-12);
+  border: 1px solid var(--ink-12);
+  margin-bottom: 40px;
+}
+.included-item{
+  background: var(--white);
+  padding: 24px 22px;
+  display:flex;
+  flex-direction:column;
+  gap: 14px;
+}
+.included-item .mark{ width:20px; height:1px; background: var(--gold); }
+.included-item span:last-child{
+  font-family: var(--font-display);
+  font-size: 16.5px;
+  line-height:1.3;
+  color: var(--ink);
+}
+
+.enquire-note{
+  font-size: 13px;
+  font-style: italic;
+  color: var(--ink-50);
+  margin-bottom: 22px;
+}
+
+@media (max-width:760px){ .included-grid{ grid-template-columns:1fr; } }
 
 /* Enquiry form */
 .enquiry-form{ max-width: 760px; display:flex; flex-direction:column; gap:22px; }

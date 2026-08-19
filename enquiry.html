@@ -43,32 +43,37 @@
   <div class="page-header-inner">
     <span class="eyebrow">Start A Conversation</span>
     <h1>Tell us about the journey you&rsquo;re imagining.</h1>
-    <p class="lede">Share a few details and our team will follow up within two business days with a proposed itinerary and pricing.</p>
+    <p class="lede">Share a few details and our team will follow up within 24 hours to discuss your journey. Every itinerary is tailored, so pricing is always shared on enquiry — never listed online.</p>
   </div>
 </header>
 
 <section class="section">
   <form class="enquiry-form" id="enquiryForm" data-reveal action="https://formspree.io/f/mjybpqwl" method="POST">
-    <input type="hidden" name="_subject" value="New Shyamarpan Enquiry — Ethosphere">
+    <input type="hidden" name="_subject" value="New Ethosphere Enquiry">
     <div class="form-row">
       <label>Full Name<input type="text" name="name" placeholder="Your name" required></label>
       <label>Email<input type="email" name="email" placeholder="you@email.com" required></label>
     </div>
     <div class="form-row">
       <label>Phone<input type="tel" name="phone" placeholder="+91 00000 00000"></label>
-      <label>Journey Interested In<input type="text" name="journey" placeholder="e.g. Shyamarpan" value="Shyamarpan"></label>
+      <label>Journey Interested In
+        <select name="journey" id="journeyField">
+          <option value="Shyamarpan &mdash; 2&ndash;4 Oct 2026" data-key="shyamarpan">Shyamarpan &mdash; 2&ndash;4 Oct 2026</option>
+          <option value="General / Future Journey" data-key="general">General / Future Journey</option>
+        </select>
+      </label>
     </div>
     <div class="form-row">
-      <label>Approximate Travel Dates<input type="text" name="dates" placeholder="e.g. March 2027"></label>
+      <label>Approximate Travel Dates<input type="text" name="dates" id="datesField" placeholder="e.g. March 2027"></label>
       <label>Group Size<input type="text" name="group_size" placeholder="e.g. 2 travellers"></label>
     </div>
     <label>Tell us a little about what you&rsquo;re looking for<textarea name="message" rows="5" placeholder="Interests, occasion, anything we should know..."></textarea></label>
     <button type="submit" class="btn btn-rust">Send Enquiry</button>
-    <p class="form-note" id="enquiryFormNote">We typically respond within two business days.</p>
+    <p class="form-note" id="enquiryFormNote">We typically respond within 24 hours.</p>
   </form>
   <div class="enquiry-success" id="enquirySuccess" style="display:none;">
-    <h3>Thank you &mdash; your enquiry is in.</h3>
-    <p>We&rsquo;ve received your message and will follow up within two business days with a proposed itinerary.</p>
+    <h3>Thank you.</h3>
+    <p>Your enquiry has reached us — we&rsquo;ll be in touch within 24 hours to discuss your journey.</p>
   </div>
 
   <div class="enquiry-info" data-reveal>

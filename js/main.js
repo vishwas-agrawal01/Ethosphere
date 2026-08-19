@@ -179,6 +179,21 @@ function initEthosphere() {
     const submitBtn = enquiryForm.querySelector('button[type="submit"]');
     const noteDefault = note ? note.textContent : '';
 
+    // Pre-select the journey (and dates) when arriving via a journey-specific
+    // CTA, e.g. enquiry.html?journey=shyamarpan
+    const journeyKey = new URLSearchParams(window.location.search).get('journey');
+    if (journeyKey) {
+      const journeyField = document.getElementById('journeyField');
+      if (journeyField) {
+        const match = [...journeyField.options].find(o => o.dataset.key === journeyKey);
+        if (match) journeyField.value = match.value;
+      }
+      if (journeyKey === 'shyamarpan') {
+        const datesField = document.getElementById('datesField');
+        if (datesField && !datesField.value) datesField.value = '2–4 October 2026';
+      }
+    }
+
     enquiryForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       submitBtn.disabled = true;
