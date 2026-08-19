@@ -36,7 +36,6 @@ function initHeroSlideshow() {
   const track = document.getElementById('heroTrack');
   const prevBtn = document.getElementById('heroPrev');
   const nextBtn = document.getElementById('heroNext');
-  const dotsWrap = document.getElementById('heroDots');
   if (!viewport || !track || HERO_SLIDES.length < 2) return;
 
   const AUTOPLAY_MS = 7000;
@@ -55,20 +54,6 @@ function initHeroSlideshow() {
   let realIndex = 0; // 0-based index into HERO_SLIDES
   let trackIndex = 1; // position in the track (offset by the prepended clone)
   let timer = null;
-
-  // Dots
-  const dots = HERO_SLIDES.map((_, i) => {
-    const b = document.createElement('button');
-    b.className = 'hero-dot';
-    b.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-    b.addEventListener('click', () => goTo(i));
-    dotsWrap.appendChild(b);
-    return b;
-  });
-
-  function updateDots() {
-    dots.forEach((d, i) => d.classList.toggle('is-active', i === realIndex));
-  }
 
   function setTrackPosition(withTransition) {
     track.classList.toggle('is-snapping', !withTransition);
@@ -97,21 +82,11 @@ function initHeroSlideshow() {
   function next() {
     realIndex = (realIndex + 1) % HERO_SLIDES.length;
     goToTrackIndex(trackIndex + 1);
-    updateDots();
   }
 
   function prev() {
     realIndex = (realIndex - 1 + HERO_SLIDES.length) % HERO_SLIDES.length;
     goToTrackIndex(trackIndex - 1);
-    updateDots();
-  }
-
-  function goTo(index) {
-    if (index === realIndex) return;
-    realIndex = index;
-    trackIndex = index + 1;
-    goToTrackIndex(trackIndex);
-    updateDots();
   }
 
   function startAutoplay() {
@@ -138,7 +113,6 @@ function initHeroSlideshow() {
   });
 
   setTrackPosition(false);
-  updateDots();
   startAutoplay();
 }
 

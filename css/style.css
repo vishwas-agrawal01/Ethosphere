@@ -258,7 +258,9 @@ button{ font-family: inherit; cursor:pointer; }
   position: relative;
   z-index: 3;
   width:100%;
-  padding: 160px var(--gutter) 90px;
+  /* Horizontal padding is wider than the shared --gutter so the text
+     block never reaches into the space the arrow controls sit in. */
+  padding: 160px 104px 90px;
 }
 
 /* =========================================================
@@ -314,36 +316,16 @@ button{ font-family: inherit; cursor:pointer; }
 }
 .hero-nav:hover{ border-color: var(--gold); background: rgba(20,16,13,.3); }
 .hero-nav svg{ width: 16px; height: 16px; }
-.hero-nav-prev{ left: var(--gutter); }
-.hero-nav-next{ right: var(--gutter); }
-
-.hero-dots{
-  position: absolute;
-  left: 50%;
-  bottom: 26px;
-  transform: translateX(-50%);
-  z-index: 4;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.hero-dot{
-  width: 22px; height: 2px;
-  background: rgba(255,253,248,.4);
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  transition: background .3s ease;
-}
-.hero-dot.is-active{ background: var(--gold); }
+.hero-nav-prev{ left: 24px; }
+.hero-nav-next{ right: 24px; }
 
 @media (max-width: 760px){
   .hero{ min-height: 62vh; }
-  .hero-nav{ width: 34px; height: 34px; }
-  .hero-nav svg{ width: 13px; height: 13px; }
+  .hero-inner{ padding-left: 64px; padding-right: 64px; }
+  .hero-nav{ width: 30px; height: 30px; }
+  .hero-nav svg{ width: 11px; height: 11px; }
   .hero-nav-prev{ left: 12px; }
   .hero-nav-next{ right: 12px; }
-  .hero-dots{ bottom: 18px; }
 }
 .hero-eyebrow{
   font-size: 12px;
