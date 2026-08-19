@@ -8,6 +8,10 @@ add proper credit lines before launch.
 | File | Source (Wikimedia Commons) | License |
 |---|---|---|
 | hero-temple-colonnade.jpg | Perspective Pillars of Corridor - Chennakesava Temple, Somanathapura.jpg (cropped) | CC BY-SA 4.0 |
+| hero-2-khajuraho-silhouette.jpg | Kandariya temple (L) and Devi Jagadambi temple (R) in silhouette at Khajuraho during Sunset.jpg | CC BY-SA 4.0 |
+| hero-3-thar-dunes.jpg | Thar Desert Sunset Rajasthan India.jpg | CC BY-SA 2.0 |
+| hero-4-diya-ritual.jpg | Diwali Festival.jpg | CC BY-SA 4.0 |
+| hero-5-ghats-sunset.jpg | Varanasi 127 (34175947074).jpg (panorama, cropped) | CC BY-SA 2.0 |
 | shyamarpan-dunes-sunset.jpg | A sunset on the dunes of the Great Indian Thar Desert Rajasthan India.jpg | CC BY 2.0 |
 | shyamarpan-khatu-darshan.jpg | Client-supplied photo (Baba Shyam, Khatu Shyam Ji) | Owned by client |
 | shyamarpan-salasar-balaji.jpg | Salasar, rajisthan.jpg | CC BY-SA 4.0 |
