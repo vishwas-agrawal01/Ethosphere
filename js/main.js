@@ -222,6 +222,13 @@ function initEthosphere() {
       }
     });
   }
+
+  // FAQ accordion — each item toggles independently
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.closest('.faq-item').classList.toggle('is-open');
+    });
+  });
 }
 
 if (document.readyState === 'loading') {
