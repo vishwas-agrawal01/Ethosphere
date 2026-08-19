@@ -1,6 +1,6 @@
 // ETHOSPHERE — shared interactivity
 
-document.addEventListener('DOMContentLoaded', () => {
+function initEthosphere() {
   const header = document.querySelector('.site-header');
   const toggle = document.querySelector('.nav-toggle');
   const mobileNav = document.querySelector('.mobile-nav');
@@ -50,4 +50,50 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     revealEls.forEach(el => el.classList.add('in-view'));
   }
-});
+
+  // Enquiry form — submit via fetch so we can show an inline thank-you
+  // instead of redirecting to Formspree's own page
+  const enquiryForm = document.getElementById('enquiryForm');
+  if (enquiryForm) {
+    const note = document.getElementById('enquiryFormNote');
+    const success = document.getElementById('enquirySuccess');
+    const submitBtn = enquiryForm.querySelector('button[type="submit"]');
+    const noteDefault = note ? note.textContent : '';
+
+    enquiryForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      if (note) { note.textContent = noteDefault; note.classList.remove('is-error'); }
+
+      try {
+        const res = await fetch(enquiryForm.action, {
+          method: 'POST',
+          body: new FormData(enquiryForm),
+          headers: { 'Accept': 'application/json' },
+        });
+        if (res.ok) {
+          enquiryForm.style.display = 'none';
+          if (success) success.style.display = 'block';
+        } else {
+          throw new Error('Submission failed');
+        }
+      } catch (err) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Enquiry';
+        if (note) {
+          note.textContent = 'Something went wrong sending that — please try again, or email us directly.';
+          note.classList.add('is-error');
+        }
+      }
+    });
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initEthosphere);
+} else {
+  // DOMContentLoaded already fired (e.g. script loaded/ran after parsing finished) —
+  // run immediately instead of waiting for an event that will never come.
+  initEthosphere();
+}

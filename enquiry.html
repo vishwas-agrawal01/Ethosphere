@@ -48,14 +48,15 @@
 </header>
 
 <section class="section">
-  <form class="enquiry-form" data-reveal onsubmit="return false;">
+  <form class="enquiry-form" id="enquiryForm" data-reveal action="https://formspree.io/f/mjybpqwl" method="POST">
+    <input type="hidden" name="_subject" value="New Shyamarpan Enquiry — Ethosphere">
     <div class="form-row">
       <label>Full Name<input type="text" name="name" placeholder="Your name" required></label>
       <label>Email<input type="email" name="email" placeholder="you@email.com" required></label>
     </div>
     <div class="form-row">
       <label>Phone<input type="tel" name="phone" placeholder="+91 00000 00000"></label>
-      <label>Journey Interested In<input type="text" name="journey" placeholder="e.g. Shyamarpan"></label>
+      <label>Journey Interested In<input type="text" name="journey" placeholder="e.g. Shyamarpan" value="Shyamarpan"></label>
     </div>
     <div class="form-row">
       <label>Approximate Travel Dates<input type="text" name="dates" placeholder="e.g. March 2027"></label>
@@ -63,8 +64,12 @@
     </div>
     <label>Tell us a little about what you&rsquo;re looking for<textarea name="message" rows="5" placeholder="Interests, occasion, anything we should know..."></textarea></label>
     <button type="submit" class="btn btn-rust">Send Enquiry</button>
-    <p class="form-note">This form is a front-end mockup — connect it to your email or CRM provider (e.g. Formspree, HubSpot) before launch.</p>
+    <p class="form-note" id="enquiryFormNote">We typically respond within two business days.</p>
   </form>
+  <div class="enquiry-success" id="enquirySuccess" data-reveal style="display:none;">
+    <h3>Thank you &mdash; your enquiry is in.</h3>
+    <p>We&rsquo;ve received your message and will follow up within two business days with a proposed itinerary.</p>
+  </div>
 
   <div class="enquiry-info" data-reveal>
     <div class="enquiry-info-item">

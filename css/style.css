@@ -718,7 +718,18 @@ button{ font-family: inherit; cursor:pointer; }
 }
 .enquiry-form input:focus, .enquiry-form textarea:focus, .enquiry-form select:focus{ outline:none; border-color:var(--rust); }
 .enquiry-form .btn{ align-self:flex-start; }
+.enquiry-form .btn[disabled]{ opacity:.5; cursor:default; }
 .form-note{ font-size:12px; color:var(--ink-30); }
+.form-note.is-error{ color:var(--rust); }
+
+.enquiry-success{
+  max-width: 560px;
+  padding: 44px 40px;
+  background: var(--cream-2);
+  border-left: 3px solid var(--rust);
+}
+.enquiry-success h3{ font-family: var(--font-display); font-weight:400; font-size:24px; margin-bottom:14px; }
+.enquiry-success p{ color: var(--ink-70); font-size:14.5px; line-height:1.7; }
 
 .enquiry-info{
   display:grid;
