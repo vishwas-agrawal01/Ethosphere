@@ -833,7 +833,7 @@ button{ font-family: inherit; cursor:pointer; }
 
 .enquiry-info{
   display:grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 30px;
   margin-top: 70px;
   padding-top: 50px;
