@@ -1,0 +1,5 @@
+worker/
+wrangler.toml
+.claude/
+.git/
+.gitignore

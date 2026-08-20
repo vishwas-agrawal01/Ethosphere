@@ -246,6 +246,62 @@ function initEthosphere() {
     });
   }
 
+  // Journal newsletter signup — posts to our own /api/subscribe worker
+  // route (never directly to Brevo, so the API key stays server-side)
+  const journalForm = document.getElementById('journalForm');
+  if (journalForm) {
+    const note = document.getElementById('journalNote');
+    const success = document.getElementById('journalSuccess');
+    const emailInput = document.getElementById('journalEmail');
+    const submitBtn = journalForm.querySelector('button[type="submit"]');
+    const noteDefault = note ? note.textContent : '';
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    journalForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = emailInput.value.trim();
+
+      if (!EMAIL_RE.test(email)) {
+        if (note) {
+          note.textContent = 'That doesn\'t look like a valid email address — mind checking it?';
+          note.classList.add('is-error');
+        }
+        emailInput.focus();
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      if (note) { note.textContent = noteDefault; note.classList.remove('is-error'); }
+
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        const data = await res.json().catch(() => ({}));
+
+        if (res.ok && data.ok) {
+          journalForm.style.display = 'none';
+          if (note) note.style.display = 'none';
+          if (success) success.style.display = 'block';
+        } else {
+          throw new Error(data.error || 'Subscription failed');
+        }
+      } catch (err) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Join the Journal List';
+        if (note) {
+          note.textContent = err.message && err.message !== 'Subscription failed'
+            ? err.message
+            : 'Something went wrong on our end — please try again in a moment.';
+          note.classList.add('is-error');
+        }
+      }
+    });
+  }
+
   // FAQ accordion — each item toggles independently
   document.querySelectorAll('.faq-question').forEach(btn => {
     btn.addEventListener('click', () => {

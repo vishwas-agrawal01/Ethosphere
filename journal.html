@@ -111,7 +111,15 @@
   <div class="cta-band-inner" data-reveal>
     <span class="eyebrow">Stay Close To The Source</span>
     <h2>New field notes, roughly once a month.</h2>
-    <a href="enquiry.html" class="btn btn-light">Join the Journal List</a>
+    <form id="journalForm" class="newsletter-form" novalidate>
+      <label for="journalEmail" class="sr-only">Email address</label>
+      <input type="email" id="journalEmail" name="email" placeholder="Your email address" autocomplete="email" required>
+      <button type="submit" class="btn btn-light">Join the Journal List</button>
+    </form>
+    <p id="journalNote" class="form-note form-note-light">No spam — just field notes. Unsubscribe anytime.</p>
+    <div id="journalSuccess" class="newsletter-success" style="display:none;" role="status">
+      Thank you — check your inbox for a welcome note from us.
+    </div>
   </div>
 </section>
 
