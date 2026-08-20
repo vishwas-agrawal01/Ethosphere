@@ -116,6 +116,26 @@ function initHeroSlideshow() {
   startAutoplay();
 }
 
+// Filmstrip zoom for touch devices — there's no :hover to drive the zoom,
+// so watch each item cross a narrow band at the horizontal centre of its
+// strip and toggle a class there instead. The scroll itself is a pure CSS
+// animation (see filmstrip-scroll); this only ever toggles a class, never
+// touches layout or style directly, so it stays cheap even while the CSS
+// animation is continuously moving these elements.
+function initFilmstripZoom() {
+  if (!('IntersectionObserver' in window)) return;
+  document.querySelectorAll('.filmstrip').forEach(strip => {
+    const items = strip.querySelectorAll('.filmstrip-item');
+    if (!items.length) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        entry.target.classList.toggle('is-centered', entry.isIntersecting);
+      });
+    }, { root: strip, rootMargin: '0px -42% 0px -42%', threshold: 0 });
+    items.forEach(item => io.observe(item));
+  });
+}
+
 function initEthosphere() {
   const header = document.querySelector('.site-header');
   const toggle = document.querySelector('.nav-toggle');
@@ -153,6 +173,9 @@ function initEthosphere() {
 
   // Hero slideshow (only present on pages with a hero carousel)
   initHeroSlideshow();
+
+  // Filmstrip mobile zoom (only present on pages with a filmstrip)
+  initFilmstripZoom();
 
   // Scroll reveal
   const revealEls = document.querySelectorAll('[data-reveal]');
