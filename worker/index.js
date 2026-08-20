@@ -39,7 +39,7 @@ async function handleSubscribe(request, env) {
   }
 
   if (!env.BREVO_API_KEY) {
-    return json({ ok: false, error: 'Subscription service is not configured yet.' }, 500);
+    return json({ ok: false, error: 'Subscription service is not configured yet.', debugEnvKeys: Object.keys(env) }, 500);
   }
 
   try {
