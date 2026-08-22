@@ -690,7 +690,7 @@ button{ font-family: inherit; cursor:pointer; }
   display:grid;
   grid-template-columns: 1.05fr .95fr;
   gap: clamp(30px, 5vw, 70px);
-  align-items:center;
+  align-items:start;
   padding: 100px var(--gutter);
   background: var(--white);
 }
