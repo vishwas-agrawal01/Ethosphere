@@ -69,19 +69,23 @@ async function handleSubscribe(request, env) {
     // endpoint. Passing listIds directly on contact creation does NOT
     // reliably fire Brevo's "Contact added to list" automation trigger —
     // this endpoint is the one that does.
+    let listDebug = { listIdSeen: env.BREVO_LIST_ID || null };
     if (env.BREVO_LIST_ID) {
       const listRes = await fetch(`https://api.brevo.com/v3/contacts/lists/${env.BREVO_LIST_ID}/contacts/add`, {
         method: 'POST',
         headers: brevoHeaders,
         body: JSON.stringify({ emails: [email] }),
       });
+      const listBody = await listRes.json().catch(() => ({}));
+      listDebug.status = listRes.status;
+      listDebug.body = listBody;
 
       if (!listRes.ok) {
-        return json({ ok: false, error: "We couldn't complete that subscription — please try again." }, 502);
+        return json({ ok: false, error: "We couldn't complete that subscription — please try again.", listDebug }, 502);
       }
     }
 
-    return json({ ok: true });
+    return json({ ok: true, listDebug });
   } catch {
     return json({ ok: false, error: 'Network error reaching the subscription service.' }, 502);
   }
