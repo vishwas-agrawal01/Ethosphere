@@ -42,32 +42,46 @@ async function handleSubscribe(request, env) {
     return json({ ok: false, error: 'Subscription service is not configured yet.' }, 500);
   }
 
+  const brevoHeaders = {
+    'api-key': env.BREVO_API_KEY,
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  };
+
   try {
-    const brevoRes = await fetch('https://api.brevo.com/v3/contacts', {
+    // Create (or update) the contact first. Deliberately not passing listIds
+    // here — see the dedicated list-add call below.
+    const createRes = await fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
-      headers: {
-        'api-key': env.BREVO_API_KEY,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        email,
-        listIds: env.BREVO_LIST_ID ? [Number(env.BREVO_LIST_ID)] : undefined,
-        updateEnabled: true,
-      }),
+      headers: brevoHeaders,
+      body: JSON.stringify({ email, updateEnabled: true }),
     });
 
-    // 201 = new contact created, 204 = existing contact updated (already subscribed)
-    if (brevoRes.ok || brevoRes.status === 204) {
-      return json({ ok: true });
+    const createErr = createRes.ok || createRes.status === 204
+      ? null
+      : await createRes.json().catch(() => ({}));
+
+    if (createErr && createErr.code !== 'duplicate_parameter') {
+      return json({ ok: false, error: "We couldn't complete that subscription — please try again." }, 502);
     }
 
-    const errBody = await brevoRes.json().catch(() => ({}));
-    if (errBody.code === 'duplicate_parameter') {
-      return json({ ok: true });
+    // Explicitly add to the list via Brevo's dedicated list-membership
+    // endpoint. Passing listIds directly on contact creation does NOT
+    // reliably fire Brevo's "Contact added to list" automation trigger —
+    // this endpoint is the one that does.
+    if (env.BREVO_LIST_ID) {
+      const listRes = await fetch(`https://api.brevo.com/v3/contacts/lists/${env.BREVO_LIST_ID}/contacts/add`, {
+        method: 'POST',
+        headers: brevoHeaders,
+        body: JSON.stringify({ emails: [email] }),
+      });
+
+      if (!listRes.ok) {
+        return json({ ok: false, error: "We couldn't complete that subscription — please try again." }, 502);
+      }
     }
 
-    return json({ ok: false, error: "We couldn't complete that subscription — please try again." }, 502);
+    return json({ ok: true });
   } catch {
     return json({ ok: false, error: 'Network error reaching the subscription service.' }, 502);
   }
