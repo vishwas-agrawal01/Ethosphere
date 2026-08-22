@@ -77,7 +77,14 @@ async function handleSubscribe(request, env) {
       });
 
       if (!listRes.ok) {
-        return json({ ok: false, error: "We couldn't complete that subscription — please try again." }, 502);
+        // Already a member of the list — that's a success from the
+        // subscriber's point of view, not an error.
+        const listErr = await listRes.json().catch(() => ({}));
+        const alreadyOnList = listErr.code === 'invalid_parameter'
+          && /already in list/i.test(listErr.message || '');
+        if (!alreadyOnList) {
+          return json({ ok: false, error: "We couldn't complete that subscription — please try again." }, 502);
+        }
       }
     }
 
